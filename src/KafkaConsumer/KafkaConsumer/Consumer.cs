@@ -2,11 +2,11 @@
 
 namespace KafkaConsumer
 {
-    class Program
+    class Consumer
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            
         }
     }
 }
