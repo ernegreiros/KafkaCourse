@@ -26,14 +26,15 @@ namespace KafkaConsumer
             {
                 try
                 {
-                    Console.WriteLine($"--------- Processing new order ---------");
-                    Console.WriteLine("Checking for fraud...");
-                    Thread.Sleep(100);
-
                     var consumeResult = consumer.Consume();
+
+                    Console.WriteLine($"--------- Processing new order ---------");
                     Console.WriteLine($"{consumeResult.Offset}::{consumeResult.Partition}::");
                     Console.WriteLine($"--- Order ---");
                     Console.WriteLine($"{consumeResult.Message.Key}::{consumeResult.Message.Value}");
+                    Console.WriteLine("Checking for fraud...");
+                    Thread.Sleep(200);
+                    Console.WriteLine("Order Processed!");
 
                     consumer.StoreOffset(consumeResult);
                 }

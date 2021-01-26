@@ -10,7 +10,9 @@ namespace KafkaProducer
 
         static void Main(string[] args)
         {
-            var kafkaTopic = "ECOMMERCE_PURCHASE";
+            var orderTopic = "ECOMMERCE_PURCHASE";
+            var emailTopic = "ECOMMERCE_EMAIL";
+
             var id = random.Next(0, 999).ToString();
             var name = Guid.NewGuid().ToString();
             var purchaseValue = random.Next(0, 9999).ToString();
@@ -23,36 +25,58 @@ namespace KafkaProducer
 
             using var producer = new ProducerBuilder<string, string>(configs).Build();
 
+            producer.Produce(topic: orderTopic,
+                             message: CreateOrderMessage(id, name, purchaseValue),
+                             CallBack);
+
+            producer.Produce(topic: emailTopic,
+                             message: CreateEmailMessage(id, name),
+                             CallBack);
+
+            producer.Flush();
+        }
+
+        private static Message<string, string> CreateOrderMessage(string id, string name, string purchaseValue)
+        {
+            var message = $"{id},{name},{purchaseValue}";
+            return CreateMessage(key: id, value: message);
+        }
+
+        private static Message<string, string> CreateEmailMessage(string id, string name)
+        {
+            var message = $"Hi! {name}, Thank you for purchasing!";
+            return CreateMessage(key: id, value: message);
+        }
+
+        private static Message<string, string> CreateMessage(string key, string value)
+        {
             var message = new Message<string, string>
             {
-                Key = id,
-                Value = $"{id},{name},{purchaseValue}"
+                Key = key,
+                Value = value
             };
 
-            producer.Produce(topic: kafkaTopic,
-                             message: message,
-                             CallBack);
-            producer.Flush();
+            return message;
         }
 
         private static void CallBack(DeliveryReport<string, string> deliveryReport)
         {
             if (deliveryReport.Error.Code == ErrorCode.NoError)
             {
-                Console.WriteLine($"Message Successfully Sent!\n" +
-                                  $"Offset:{deliveryReport.Offset}\n" +
-                                  $"Key:{deliveryReport.Message.Key}\n" +
-                                  $"Value:{deliveryReport.Message.Value}");
+                Console.WriteLine($"-------- Message Successfully Sent! --------");
+                Console.WriteLine($"Offset: {deliveryReport.Offset}");
+                Console.WriteLine($"Key: {deliveryReport.Message.Key}");
+                Console.WriteLine($"Value: {deliveryReport.Message.Value}");
             }
             else
             {
-                Console.WriteLine($"Error sending message!\n" +
-                                  $"Error Code: {deliveryReport.Error.Code}\n" +
-                                  $"isBrokerError: {deliveryReport.Error.IsBrokerError}\n" +
-                                  $"isError: {deliveryReport.Error.IsError}\n" +
-                                  $"isFatal: {deliveryReport.Error.IsFatal}\n" +
-                                  $"isLocalError: {deliveryReport.Error.IsLocalError}\n" +
-                                  $"Reason: {deliveryReport.Error.Reason}");
+                Console.WriteLine($"-------- Error sending message! --------");
+                Console.WriteLine($"Error Code: {deliveryReport.Error.Code}");
+                Console.WriteLine($"isBrokerError: {deliveryReport.Error.IsBrokerError}");
+                Console.WriteLine($"isError: {deliveryReport.Error.IsError}");
+                Console.WriteLine($"isFatal: {deliveryReport.Error.IsFatal}");
+                Console.WriteLine($"isLocalError: {deliveryReport.Error.IsLocalError}");
+                Console.WriteLine($"Reason: {deliveryReport.Error.Reason}");
             }   
         }
     }
