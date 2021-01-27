@@ -9,26 +9,26 @@ Project with what I learned about kafka using .Net Core, producer and consumer e
 
 # Helpfull Commands
 
-## Start Zookeeper with default configs
-bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+### Start Zookeeper with default configs
+`bin\windows\zookeeper-server-start.bat config\zookeeper.properties`
 
-## Start kafka-server with default configs
-bin\windows\kafka-server-start.bat config\server.properties
+### Start kafka-server with default configs
+`bin\windows\kafka-server-start.bat config\server.properties`
 
-## Create a topic
-bin\windows\kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic NEW_TOPIC
+### Create a topic
+`bin\windows\kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic NEW_TOPIC`
 
-## List topics
-bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092 
+### List topics
+`bin\windows\kafka-topics.bat --list --bootstrap-server localhost:9092`
 
-## Create a producer
-bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic NEW_TOPIC
+### Create a producer
+`bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic NEW_TOPIC`
 
-## Create a consumer
+### Create a consumer
 - Read messages from the first offset created
-bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic NEW_TOPIC --from-beginning
+`bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic NEW_TOPIC --from-beginning`
 - Read all messages after the consumer is up
-bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic NEW_TOPIC
+`bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic NEW_TOPIC`
 
-## Alter a topic to add more partitions to it 
-bin\windows\kafka-topics.bat --alter --zookeeper localhost:9092 --topic ECOMMERCE_PURCHASE --partitions 3
+### Alter a topic to add more partitions to it 
+`bin\windows\kafka-topics.bat --alter --zookeeper localhost:9092 --topic ECOMMERCE_PURCHASE --partitions 3`
