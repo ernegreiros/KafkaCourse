@@ -7,6 +7,9 @@ Project with what I learned about kafka using .Net Core, producer and consumer e
 - Start Zookeeper
 - Start a Kafka Server in port 9092
 
+# Helpfull link
+`https://docs.confluent.io/clients-confluent-kafka-dotnet/current/index.html`
+
 # Helpfull Commands
 
 ### Start Zookeeper with default configs
@@ -35,3 +38,6 @@ Project with what I learned about kafka using .Net Core, producer and consumer e
 
 ### Alter a topic to add more partitions to it 
 `bin\windows\kafka-topics.bat --alter --zookeeper localhost:2181 --topic ECOMMERCE_PURCHASE --partitions 3`
+
+### Check groups
+`bin\windows\kafka-consumer-groups.bat --all-groups --bootstrap-server localhost:9092 --describe`
