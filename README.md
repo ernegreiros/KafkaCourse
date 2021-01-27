@@ -26,8 +26,11 @@ Project with what I learned about kafka using .Net Core, producer and consumer e
 
 ### Create a consumer
 - Read messages from the first offset created
+
 `bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic NEW_TOPIC --from-beginning`
+
 - Read all messages after the consumer is up
+
 `bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic NEW_TOPIC`
 
 ### Alter a topic to add more partitions to it 
