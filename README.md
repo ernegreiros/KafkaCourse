@@ -34,4 +34,4 @@ Project with what I learned about kafka using .Net Core, producer and consumer e
 `bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic NEW_TOPIC`
 
 ### Alter a topic to add more partitions to it 
-`bin\windows\kafka-topics.bat --alter --zookeeper localhost:9092 --topic ECOMMERCE_PURCHASE --partitions 3`
+`bin\windows\kafka-topics.bat --alter --zookeeper localhost:2181 --topic ECOMMERCE_PURCHASE --partitions 3`
