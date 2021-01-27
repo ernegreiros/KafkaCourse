@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FraudDetectorService", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SendEmailService", "src\KafkaConsumer\SendEmailService\SendEmailService.csproj", "{D6CC38FD-4C86-4BF6-BD2D-09565F607BC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogService", "src\KafkaConsumer\LogService\LogService.csproj", "{CD91B03E-E777-490A-B47D-774AFC32F313}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogService", "src\KafkaConsumer\LogService\LogService.csproj", "{CD91B03E-E777-490A-B47D-774AFC32F313}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Consumers", "Consumers", "{12D5674C-3F31-4A96-A0E5-F69CE5DDADCB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Producers", "Producers", "{EAD80D6E-085C-4551-B76D-3DA86AE8D0E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +40,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{881C5882-729E-4E83-93E6-BD4777B4CEE1} = {EAD80D6E-085C-4551-B76D-3DA86AE8D0E3}
+		{1E8DB556-61AC-4ABA-8014-9AFFE504658F} = {12D5674C-3F31-4A96-A0E5-F69CE5DDADCB}
+		{D6CC38FD-4C86-4BF6-BD2D-09565F607BC6} = {12D5674C-3F31-4A96-A0E5-F69CE5DDADCB}
+		{CD91B03E-E777-490A-B47D-774AFC32F313} = {12D5674C-3F31-4A96-A0E5-F69CE5DDADCB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ECAE3CE1-D17C-4A2C-8239-B873640A5525}
